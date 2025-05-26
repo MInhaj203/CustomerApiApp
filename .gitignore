@@ -1,25 +1,40 @@
-# Maven
-target/
+# Maven output
+/target/
 
-# Logs
-*.log
+# Eclipse-specific files
+/.classpath
+/.project
+/.settings/
 
-# IntelliJ IDEA
-.idea/
+# IntelliJ IDEA files (if you open the project there later)
 *.iml
-out/
+.idea/
 
-# Eclipse
-.project
-.classpath
-.settings/
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
 
-# VS Code
-.vscode/
-
-# OS files
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# WAR or temporary artifacts
+# Java build artifacts
+*.class
+*.jar
 *.war
+*.ear
+
+# VS Code settings (if used)
+.vscode/
+
+# Node-related (if ever integrated frontend tools)
+node_modules/
+
+# Environment files
+.env
+
+# Deployment-specific overrides (e.g., OpenShift)
+.openshift/

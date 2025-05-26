@@ -5,7 +5,7 @@ FROM tomcat:10.1-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy WAR file into the ROOT webapp location
-COPY customerapiapp.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/customerapiapp.war /usr/local/tomcat/webapps/ROOT.war
 
 
 # Expose port 8080

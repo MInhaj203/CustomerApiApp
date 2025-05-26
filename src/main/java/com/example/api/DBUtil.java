@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DBUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/api_db";
     private static final String USER = "root"; // change if needed
-    private static final String PASS = "12345678"; // change if needed
+    private static final String PASS = "ahmadminhaj"; // change if needed
 
     public static Connection getConnection() {
         Connection conn = null;

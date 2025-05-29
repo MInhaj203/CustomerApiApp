@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBUtil {
-    private static final String URL = "jdbc:mysql://localhost:3306/api_db";
-    private static final String USER = "root"; // change if needed
-    private static final String PASS = "ahmadminhaj"; // change if needed
+    private static final String URL = "jdbc:mysql://u3omantxarlsbr7j:wHCcSmOCDfcXZI301Xsp@boxxce1lr5wnrn08idjz-mysql.services.clever-cloud.com:3306/boxxce1lr5wnrn08idjz";
+    private static final String USER = "u3omantxarlsbr7j"; // change if needed
+    private static final String PASS = "wHCcSmOCDfcXZI301Xsp"; // change if needed
 
     public static Connection getConnection() {
         Connection conn = null;

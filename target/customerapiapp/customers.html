@@ -179,7 +179,10 @@
 let selectedCustomerId = null;
 let userRole = null;
 
-fetch('/CustomerApiApp/session-info')
+// fetch('/CustomerApiApp/session-info')
+fetch('/session-info', {		//	replaced '/CustomerApiApp/session-info'
+    credentials: "include" // ✅ include cookies so server knows session
+})					
   .then(res => res.json())
   .then(data => {
     userRole = data.role;
@@ -204,13 +207,15 @@ function searchCustomers() {
   // Hide add form
   document.getElementById('addCustomerForm').style.display = 'none';
 
-  let url = '/CustomerApiApp/customers?';
+  let url = '/customers?';						//	replaced '/CustomerApiApp/customers?'
   if (id) url += `id=${id}&`;
   if (name) url += `name=${name}&`;
   if (email) url += `email=${email}&`;
   if (city) url += `city=${city}&`;
 
-  fetch(url)
+  fetch(url, {
+	    credentials: "include" // ✅ include cookies so server knows session
+  })
     .then(response => response.json())
     .then(customers => {
       const resultArea = document.getElementById('resultArea');
@@ -284,10 +289,13 @@ function updateCustomer() {
     city: document.getElementById('cityBox').value
   };
 
-  fetch('/CustomerApiApp/customers/' + selectedCustomerId, {
+//  fetch('/CustomerApiApp/customers/' + selectedCustomerId, {
+  fetch('/customers/' + selectedCustomerId, {				//	replaced '/CustomerApiApp/customers/'
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(updated)
+  }, {
+	    credentials: "include" // ✅ include cookies so server knows session
   }).then(res => {
     if (res.ok) {
       alert('Customer updated successfully');
@@ -300,9 +308,12 @@ function updateCustomer() {
 
 function deleteCustomer(id) {
   if (confirm("Are you sure you want to delete this customer?")) {
-    fetch('/CustomerApiApp/customers/' + id, {
+    fetch('/customers/' + id, {					//	replaced '/CustomerApiApp/customers/'
       method: 'DELETE'
-    }).then(res => {
+    }, {
+        credentials: "include" // ✅ include cookies so server knows session
+    })
+    .then(res => {
       if (res.ok) {
         alert('Customer deleted');
         searchCustomers();
@@ -320,10 +331,12 @@ function addCustomer() {
     city: document.getElementById('newCity').value
   };
 
-  fetch('/CustomerApiApp/customers', {
+  fetch('/customers', {						//	replaced '/CustomerApiApp/customers'
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(newCust)
+  }, {
+	    credentials: "include" // ✅ include cookies so server knows session
   }).then(res => {
     if (res.ok) {
       alert('Customer added successfully');
@@ -339,11 +352,15 @@ function addCustomer() {
 }
 
 function logout() {
-  fetch('/CustomerApiApp/logout')
+  fetch('/logout', {					//	replaced '/CustomerApiApp/logout'
+	    credentials: "include" // ✅ include cookies so server knows session
+  })
     .then(() => window.location.href = 'login.html');
 }
 
-fetch('/CustomerApiApp/session-check')
+fetch('/session-check', {		//	replaced '/CustomerApiApp/session-check'
+    credentials: "include" // ✅ include cookies so server knows session
+})
   .then(res => {
     if (!res.ok) {
       window.location.href = 'login.html';

@@ -80,8 +80,10 @@
 	  fetch('/auth/login', {  // ✅ updated path
 	    method: 'POST',
 	    headers: { 'Content-Type': 'application/json' },
+	    credentials: "include", // ✅ VERY IMPORTANT for session cookies
 	    body: JSON.stringify({ username, password })
 	  })
+	  
 	  .then(response => {
 	    if (response.ok) {
 	      window.location.href = 'customers.html';

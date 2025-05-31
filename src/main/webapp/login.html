@@ -21,21 +21,33 @@
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h2 {
       text-align: center;
       color: #333;
       margin-bottom: 24px;
+      width: 100%;
     }
 
     input {
       width: 100%;
       padding: 10px;
-      margin: 12px 0;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    #username {
+      margin: 12px 0;
+    }
+
+    #password {
+      margin: 12px 0 24px 0; /* ⬅️ extra bottom margin added here */
     }
 
     button {
@@ -58,6 +70,7 @@
       color: red;
       text-align: center;
       margin-top: 10px;
+      width: 100%;
     }
   </style>
 </head>
@@ -73,29 +86,27 @@
 
   <script>
   function login() {
-	  const username = document.getElementById('username').value;
-	  const password = document.getElementById('password').value;
-	  const errorDiv = document.getElementById('errorMsg');
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('errorMsg');
 
-	  fetch('/auth/login', {  // ✅ updated path
-	    method: 'POST',
-	    headers: { 'Content-Type': 'application/json' },
-	    credentials: "include", // ✅ VERY IMPORTANT for session cookies
-	    body: JSON.stringify({ username, password })
-	  })
-	  
-	  .then(response => {
-	    if (response.ok) {
-	      window.location.href = 'customers.html';
-	    } else {
-	      errorDiv.textContent = 'Invalid username or password.';
-	    }
-	  })
-	  .catch(() => {
-	    errorDiv.textContent = 'An error occurred. Please try again.';
-	  });
-	}
-
+    fetch('/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username, password })
+    })
+    .then(response => {
+      if (response.ok) {
+        window.location.href = 'customers.html';
+      } else {
+        errorDiv.textContent = 'Invalid username or password.';
+      }
+    })
+    .catch(() => {
+      errorDiv.textContent = 'An error occurred. Please try again.';
+    });
+  }
   </script>
 
 </body>

@@ -5,17 +5,20 @@
   <title>Customer Management</title>
 <style>
   :root {
-    --primary-color: #007bff;
-    --danger-color: #dc3545;
-    --light-gray: #f2f2f2;
-    --border-color: #ccc;
-    --bg-light: #f9f9f9;
+    --primary-color: #6366f1; /* Indigo-500 */
+    --primary-dark: #4f46e5;
+    --danger-color: #ef4444;  /* Red-500 */
+    --danger-dark: #dc2626;
+    --light-bg: #f9fafb;      /* Gray-50 */
+    --medium-gray: #e5e7eb;   /* Gray-200 */
+    --text-color: #1f2937;    /* Gray-800 */
+    --border-color: #d1d5db;  /* Gray-300 */
   }
 
   body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #fff;
-    color: #333;
+    background-color: var(--light-bg);
+    color: var(--text-color);
     margin: 0;
     padding: 20px;
   }
@@ -24,10 +27,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, var(--primary-color), #818cf8); /* Indigo gradient */
     color: white;
-    padding: 15px 30px;
-    border-radius: 6px;
+    padding: 18px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 
   h2, h3 {
@@ -38,23 +42,23 @@
     background-color: var(--danger-color);
     color: white;
     border: none;
-    padding: 10px 16px;
-    border-radius: 4px;
+    padding: 10px 18px;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.3s ease;
   }
 
   #logoutBtn:hover {
-    background-color: #c82333;
+    background-color: var(--danger-dark);
   }
 
   .section {
-    background-color: var(--bg-light);
-    padding: 20px;
-    border-radius: 6px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
     margin: 20px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
 
   input[type="text"] {
@@ -62,7 +66,14 @@
     margin: 5px 10px 10px 0;
     width: 220px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: border 0.3s ease;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
   }
 
   button {
@@ -72,13 +83,13 @@
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: bold;
-    transition: background 0.2s ease;
+    transition: background 0.3s ease;
   }
 
   button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-dark);
   }
 
   table {
@@ -88,17 +99,18 @@
   }
 
   th, td {
-    padding: 12px;
+    padding: 14px;
     border-bottom: 1px solid var(--border-color);
     text-align: left;
   }
 
   th {
-    background-color: var(--light-gray);
+    background-color: var(--medium-gray);
+    font-weight: 600;
   }
 
   tr:hover {
-    background-color: #f1f1f1;
+    background-color: #f3f4f6; /* Gray-100 */
   }
 
   #selectedCustomer, #addCustomerForm {
@@ -108,18 +120,22 @@
   }
 
   .action-btn {
-    margin-right: 8px;
-    padding: 8px 12px;
+    margin-right: 6px;
+    padding: 8px 14px;
     font-size: 0.9em;
-    background-color: #6c757d;
+    background-color: #6b7280; /* Gray-600 */
+    color: white;
+    border-radius: 4px;
+    border: none;
+    transition: background 0.3s ease;
   }
 
   .action-btn:hover {
-    background-color: #5a6268;
+    background-color: #4b5563; /* Gray-700 */
   }
 
   .form-row {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
   }
 
   .form-row label {
@@ -129,12 +145,14 @@
   }
 
   #resultArea p {
-    padding: 10px;
-    background-color: #ffeeba;
-    border-left: 4px solid #ffc107;
-    border-radius: 4px;
+    padding: 12px;
+    background-color: #fef3c7; /* Amber-100 */
+    border-left: 4px solid #f59e0b; /* Amber-500 */
+    border-radius: 6px;
+    color: #92400e;
   }
 </style>
+
 </head>
 <body>
 
@@ -151,7 +169,7 @@
   <input type="text" id="searchEmail" placeholder="Search by Email">
   <input type="text" id="searchCity" placeholder="Search by City">
   <button onclick="searchCustomers()">Search</button>
-  <button onclick="showAddCustomerForm()">Add User</button>
+  <button onclick="showAddCustomerForm()">Add Customer</button>
 </div>
 
 <!-- 👤 Selected Record (Initially Hidden) -->
